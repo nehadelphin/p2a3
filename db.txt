@@ -1,0 +1,14 @@
+create database Gym;
+use gym;
+create table participant( pid int primary key auto_increment,
+                          name varchar(50),
+                          email varchar(50));
+
+create table batch(bid  int primary key auto_increment,
+				   classname varchar(50));
+                   
+create table batchbyparticipant( id   int primary key auto_increment,
+				   bid int,
+                   pid int,
+                   foreign key(bid) references batch(bid),
+                   foreign key (pid) references participant(pid));
