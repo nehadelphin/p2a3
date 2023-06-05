@@ -13,16 +13,6 @@
 <title>Gym Application</title>
 </head>
 <body>
-	<%
-		ParticipantDao pdao = new ParticipantDao();
-		ArrayList<Participant> participants = pdao.findAllParticipant();
-		
-		BatchDao bdao = new BatchDao();
-		ArrayList<Batch> batches = bdao.findAllBatch();
-		
-		session.setAttribute("refbatches", batches);
-		session.setAttribute("refparticipants", participants);
-	%>
 	<h1>Delphin's Gym</h1>
 	<a href="register.jsp">Register Participant</a><br>
 	<a href="updpart.jsp">Update Participant</a><br>

@@ -1,3 +1,4 @@
+<%@page import="com.dao.BatchDao"%>
 <%@page import="com.dao.BatchbyParticipantDao"%>
 <%@page import="com.bean.BatchbyParticipant"%>
 <%@page import="java.util.List"%>
@@ -15,7 +16,8 @@
   <h3>List of Participants by Classes</h3>
   <%
    String found = null;
-   ArrayList<Batch> bb = (ArrayList<Batch>)session.getAttribute("refbatches");
+   BatchDao bdao = new BatchDao();
+   ArrayList<Batch> bb = bdao.findAllBatch();
    BatchbyParticipantDao bpdao = new BatchbyParticipantDao();
    ArrayList<BatchbyParticipant> ll2 = bpdao.findAllBatchbyParticipant();
 if (ll2.size() != 0){

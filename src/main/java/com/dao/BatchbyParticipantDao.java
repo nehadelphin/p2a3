@@ -17,7 +17,7 @@ import com.resource.DbResource;
 		con = DbResource.getDbConnection();
 		}
 
-		public int storeBatchbyParticipant(com.bean.BatchbyParticipant batchbyParticipant) {
+		public int storeBatchbyParticipant(BatchbyParticipant batchbyParticipant) {
 			try {
 			PreparedStatement pstmt = con.prepareStatement("insert into Batchbyparticipant(bid,pid) values (?,?)");
 			pstmt.setInt(1, batchbyParticipant.getBid());

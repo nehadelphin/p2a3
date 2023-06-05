@@ -10,12 +10,6 @@
 <title>List of Classes</title>
 </head>
 <body>
-  <h3>List of Classes</h3>
-  <%
-   ArrayList<Batch> ll2 = (ArrayList<Batch>)session.getAttribute("refbatches");
-   for(int i=0;i<ll2.size();i++) {
-		out.println(ll2.get(i).getBid()+" "+ll2.get(i).getClassName()+"<br>");
-	}
-  %>
+<jsp:forward page="/Batch" />
 </body>
 </html>

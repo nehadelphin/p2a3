@@ -9,12 +9,10 @@
 <title>New Participant</title>
 </head>
 <body>
-    <%
-    	ArrayList<Participant> pp = (ArrayList<Participant>)session.getAttribute("refparticipants");
-    	session.setAttribute("refparticipants", pp);
-    %>
 	<h3>Participant Details</h3>
-	<form action = "participants.jsp" method="post">		
+	
+	<form action = "Participant" method="post">	
+		<input type="hidden" name="txtUpd" value="CREATE"/>	
 		Enter Name: <br>
 		<input type="text" name="txtName"/><br><br>
 			

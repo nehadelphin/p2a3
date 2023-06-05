@@ -9,12 +9,9 @@
 <title>New Class</title>
 </head>
 <body>
-    <%
-    	ArrayList<Batch> bb = (ArrayList<Batch>)session.getAttribute("refbatches");
-    	session.setAttribute("refbatches", bb);
-    %>
 	<h3>Class Details</h3>
-	<form action = "batches.jsp" method="post">		
+	<form action = "Batch" method="post">	
+		<input type="hidden" name="txtUpd" value="CREATE"/>		
 		Enter Class Name: <br>
 		<input type="text" name="txtName"/><br><br>
 				

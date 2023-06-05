@@ -1,3 +1,4 @@
+<%@page import="com.dao.ParticipantDao"%>
 <%@page import="com.bean.Participant"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -10,7 +11,8 @@
 </head>
 <body>
    <%
-    	ArrayList<Participant> pp = (ArrayList<Participant>)session.getAttribute("refparticipants");
+   		ParticipantDao pdao = new ParticipantDao();
+    	ArrayList<Participant> pp = pdao.findAllParticipant();
     %>
     <h3>List of Participants</h3>
  	<%
@@ -19,7 +21,8 @@
 		}
 	%>
 	<h3>Participant to Delete</h3>
-	<form action = "deletep.jsp" method="post">		
+	<form action = "Participant" method="post">		
+		<input type="hidden" name="txtUpd" value="DELETE"/>
 		Enter Participant ID: <br>
 		<input type="text" name="txtID"/><br><br>
 		

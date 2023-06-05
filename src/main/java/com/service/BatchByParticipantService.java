@@ -14,9 +14,9 @@ public class BatchByParticipantService {
 
 	public String storeBatchbyParticipant(BatchbyParticipant BatchbyParticipant) {
 		if(pd.storeBatchbyParticipant(BatchbyParticipant)>0) {
-			return "BatchbyParticipant data stored";
+			return "Participant added to class";
 		}else {
-			return "BatchbyParticipant data not stored";
+			return "Participant not added to clas";
 		}
 	}
 

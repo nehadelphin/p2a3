@@ -24,41 +24,49 @@ public class BatchController extends HttpServlet {
     }
 
     BatchService bs = new BatchService();
+    Batch bb = new Batch();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
-		response.setContentType("application/json");
-		List<Batch> listOfBatchs = bs.findAllBatch();
-		Gson gson = new Gson();
-		String jsonResponse = gson.toJson(listOfBatchs);
-		pw.print(jsonResponse);
-		pw.flush();	
+		response.setContentType("text/plain");
+		List<Batch> listOfBatch = bs.findAllBatch();
+		pw.println("List of Classes");
+		for(int i=0;i<listOfBatch.size();i++) {
+			pw.println(listOfBatch.get(i).getBid()+"\t"+listOfBatch.get(i).getClassName());
+		}
+		pw.flush();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		BufferedReader br = request.getReader();
+	    PrintWriter pw = response.getWriter();
 		response.setContentType("text/plain");
-		Gson gson = new Gson();
-		Batch Batch = gson.fromJson(br, Batch.class);
-		String result = bs.storeBatch(Batch);
-		pw.print(result);
-		pw.flush();	
+		
+		String action = request.getParameter("txtUpd");
+		if (action.equals("CREATE")) {
+			bb.setClassName((request.getParameter("txtName")));
+			String result = bs.storeBatch(bb);
+			request.setAttribute("result", result);
+			pw.print(result);
+			pw.flush();	
+		}else if(action.equals("UPDATE")) {			
+			doPut(request, response);
+		}else if(action.equals("DELETE")) {
+			doDelete(request, response);
+		}
 	}
 	
 	@Override
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		PrintWriter pw = response.getWriter();
-		BufferedReader br = request.getReader();
-		response.setContentType("text/plain");
-		Gson gson = new Gson();
-		Batch Batch = gson.fromJson(br, Batch.class);
-		String result = bs.updateBatch(Batch);
+	    PrintWriter pw = response.getWriter();
+		bb.setBid(Integer.parseInt(request.getParameter("txtID")));
+		bb.setClassName((request.getParameter("txtName")));
+		String result = bs.updateBatch(bb);
+		request.setAttribute("result", result);
 		pw.print(result);
 		pw.flush();	
 	}
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter pw = response.getWriter();
-		int bid = Integer.parseInt(request.getParameter("bid"));
+		int bid = Integer.parseInt(request.getParameter("txtID"));
 		response.setContentType("text/plain");
 		String result = bs.deleteBatch(bid);
 		pw.print(result);
